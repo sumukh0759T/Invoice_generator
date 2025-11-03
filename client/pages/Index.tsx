@@ -17,11 +17,11 @@ function uid() {
 export default function Index() {
   // Hotel details (editable)
   const [hotel, setHotel] = useState<HotelInfo>({
-    name: "Aurora Grand Hotel",
-    address: "12, Beachside Road, Bengaluru 560001, Karnataka, India",
-    gstin: "29ABCDE1234F2Z5",
-    phone: "+91 98765 43210",
-    email: "billing@auroragrand.in",
+    name: "LUCENT THE LUXURY HOTEL",
+    address: "Ratnagiri New Extension, Kempanahalli Main Road, Chikkamagaluru - 577101, Karnataka ",
+    gstin: "29BPIPK0091R1Z7",
+    phone: "+918618376684",
+    email: "lucenthomelystay@gmail.com",
   });
 
   // Guest and invoice fields
@@ -399,8 +399,7 @@ export default function Index() {
       </main>
 
       <footer className="py-8 text-center text-xs text-muted-foreground">
-        Built with love for hospitality • Accent color #f77f00 • Responsive &
-        printable
+        This is computer generated bill, Signature is not required
       </footer>
     </div>
   );
