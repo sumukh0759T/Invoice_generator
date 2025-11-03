@@ -79,7 +79,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
-      <header className="border-b bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-10">
+      <header className="border-b bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-10 print:hidden">
         <div className="container flex items-center justify-between py-4">
           <div className="flex items-center gap-3">
             <div className="h-9 w-9 rounded-lg bg-primary text-primary-foreground grid place-items-center font-extrabold">A</div>
@@ -93,6 +93,7 @@ export default function Index() {
       </header>
 
       <main className="container py-6 space-y-8">
+        <div className="print:hidden space-y-8">
         {/* Hotel details */}
         <section className={card + " p-5"}>
           <h2 className="text-sm font-semibold tracking-wide mb-4">Hotel Details</h2>
@@ -222,6 +223,7 @@ export default function Index() {
           <Button onClick={handleGenerate} className="bg-primary hover:bg-primary/90 text-primary-foreground">
             <FileText className="w-4 h-4" /> Generate Invoice
           </Button>
+        </div>
         </div>
 
         {showPreview && (
