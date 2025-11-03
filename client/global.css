@@ -121,7 +121,13 @@
   }
 
   @media print {
-    @page { margin: 16mm; }
-    body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page {
+      margin: 16mm;
+    }
+    body {
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
   }
 }

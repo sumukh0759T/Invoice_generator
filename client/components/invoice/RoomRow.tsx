@@ -3,13 +3,17 @@ import { formatINR } from "@/lib/money";
 import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-export type RoomCategory = "Deluxe Room" | "Executive Room" | "Suite" | "Dormitory";
+export type RoomCategory =
+  | "Deluxe Room"
+  | "Executive Room"
+  | "Suite"
+  | "Dormitory";
 
 export const CATEGORY_RATES: Record<RoomCategory, number> = {
   "Deluxe Room": 2500,
   "Executive Room": 3500,
-  "Suite": 5000,
-  "Dormitory": 1200,
+  Suite: 5000,
+  Dormitory: 1200,
 };
 
 export interface RoomRowData {
@@ -33,7 +37,11 @@ export function computeRow(row: RoomRowData): RoomRowData {
   return { ...row, subtotal, sgst, cgst, total };
 }
 
-export default function RoomRow({ data, onChange, onRemove }: {
+export default function RoomRow({
+  data,
+  onChange,
+  onRemove,
+}: {
   data: RoomRowData;
   onChange: (updated: RoomRowData) => void;
   onRemove: () => void;
@@ -51,8 +59,11 @@ export default function RoomRow({ data, onChange, onRemove }: {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [row.category, row.rate, row.rooms, row.nights]);
 
-  const setField = <K extends keyof RoomRowData>(key: K, value: RoomRowData[K]) => {
-    setRow((r) => ({ ...r, [key]: value } as RoomRowData));
+  const setField = <K extends keyof RoomRowData>(
+    key: K,
+    value: RoomRowData[K],
+  ) => {
+    setRow((r) => ({ ...r, [key]: value }) as RoomRowData);
   };
 
   const handleCategoryChange = (value: RoomCategory | "") => {
@@ -71,7 +82,8 @@ export default function RoomRow({ data, onChange, onRemove }: {
     setRow((r) => computeRow({ ...r, rate: value, dirtyRate: true }));
   };
 
-  const inputCls = "w-full rounded-md border bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40";
+  const inputCls =
+    "w-full rounded-md border bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40";
   const labelCls = "text-xs text-muted-foreground";
 
   return (
@@ -81,11 +93,15 @@ export default function RoomRow({ data, onChange, onRemove }: {
         <select
           className={inputCls}
           value={row.category}
-          onChange={(e) => handleCategoryChange(e.target.value as RoomCategory | "")}
+          onChange={(e) =>
+            handleCategoryChange(e.target.value as RoomCategory | "")
+          }
         >
           <option value="">Select category</option>
           {Object.keys(CATEGORY_RATES).map((k) => (
-            <option key={k} value={k}>{k}</option>
+            <option key={k} value={k}>
+              {k}
+            </option>
           ))}
         </select>
       </div>
@@ -121,24 +137,38 @@ export default function RoomRow({ data, onChange, onRemove }: {
       </div>
       <div className="col-span-6 md:col-span-2">
         <label className={labelCls}>Subtotal</label>
-        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">{formatINR(row.subtotal)}</div>
+        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">
+          {formatINR(row.subtotal)}
+        </div>
       </div>
 
       <div className="col-span-6 md:col-span-2">
         <label className={labelCls}>SGST (2.5%)</label>
-        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">{formatINR(row.sgst)}</div>
+        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">
+          {formatINR(row.sgst)}
+        </div>
       </div>
       <div className="col-span-6 md:col-span-2">
         <label className={labelCls}>CGST (2.5%)</label>
-        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">{formatINR(row.cgst)}</div>
+        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">
+          {formatINR(row.cgst)}
+        </div>
       </div>
       <div className="col-span-6 md:col-span-2">
         <label className={labelCls}>Total</label>
-        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm font-medium">{formatINR(row.total)}</div>
+        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm font-medium">
+          {formatINR(row.total)}
+        </div>
       </div>
 
       <div className="col-span-12 md:col-span-1 flex md:justify-end">
-        <Button variant="secondary" className="text-red-600 border border-red-200 bg-red-50 hover:bg-red-100" type="button" onClick={onRemove} aria-label="Remove room row">
+        <Button
+          variant="secondary"
+          className="text-red-600 border border-red-200 bg-red-50 hover:bg-red-100"
+          type="button"
+          onClick={onRemove}
+          aria-label="Remove room row"
+        >
           <X className="w-4 h-4" />
           <span className="hidden md:inline">Remove</span>
         </Button>

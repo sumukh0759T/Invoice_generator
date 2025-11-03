@@ -1,5 +1,9 @@
 export function formatINR(amount: number) {
-  return amount.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 2 });
+  return amount.toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 2,
+  });
 }
 
 // Convert number to Indian currency words (Rupees and Paise)
@@ -16,12 +20,44 @@ export function numberToIndianWords(n: number): string {
   return `${capitalize(words)} ${rupeeWord} only`;
 }
 
-function capitalize(s: string) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 const BELOW_TWENTY = [
-  "zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"
+  "zero",
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "ten",
+  "eleven",
+  "twelve",
+  "thirteen",
+  "fourteen",
+  "fifteen",
+  "sixteen",
+  "seventeen",
+  "eighteen",
+  "nineteen",
 ];
-const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+const TENS = [
+  "",
+  "",
+  "twenty",
+  "thirty",
+  "forty",
+  "fifty",
+  "sixty",
+  "seventy",
+  "eighty",
+  "ninety",
+];
 
 function twoDigitsToWords(n: number): string {
   if (n < 20) return BELOW_TWENTY[n];
@@ -33,7 +69,9 @@ function twoDigitsToWords(n: number): string {
 function threeDigitsToWords(n: number): string {
   const hundred = Math.floor(n / 100);
   const rest = n % 100;
-  const hundredPart = hundred ? `${BELOW_TWENTY[hundred]} hundred${rest ? " and " : ""}` : "";
+  const hundredPart = hundred
+    ? `${BELOW_TWENTY[hundred]} hundred${rest ? " and " : ""}`
+    : "";
   return hundredPart + (rest ? twoDigitsToWords(rest) : "");
 }
 
