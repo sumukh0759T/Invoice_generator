@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 
 export type RoomCategory =
   | "Deluxe Room"
-  | "Executive Room"
-  | "Suite"
+  | "Standard Room"
+  | "Family Room"
   | "Dormitory";
 
 export const CATEGORY_RATES: Record<RoomCategory, number> = {
