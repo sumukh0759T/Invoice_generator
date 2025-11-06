@@ -7,6 +7,7 @@ export interface HotelInfo {
   name: string;
   address: string;
   gstin: string;
+  hsn: string;
   phone: string;
   email: string;
 }
