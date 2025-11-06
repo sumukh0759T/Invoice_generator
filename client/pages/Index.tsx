@@ -20,6 +20,7 @@ export default function Index() {
     name: "LUCENT THE LUXURY HOTEL",
     address: "Ratnagiri New Extension, Kempanahalli Main Road, Chikkamagaluru - 577101, Karnataka ",
     gstin: "29BPIPK0091R1Z7",
+    hsn: "996311",
     phone: "+918618376684",
     email: "lucenthomelystay@gmail.com",
   });
