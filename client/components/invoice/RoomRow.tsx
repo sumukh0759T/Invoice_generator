@@ -4,10 +4,10 @@ import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export type RoomCategory =
-  | "Deluxe Room"
-  | "Standard Room"
-  | "Family Room"
-  | "Dormitory";
+  | "Deluxe Room - 996311"
+  | "Standard Room - 996311"
+  | "Family Room - 996311"
+  | "Dormitory" - 996311;
 
 export const CATEGORY_RATES: Record<RoomCategory, number> = {
   "Deluxe Room": 2500,
