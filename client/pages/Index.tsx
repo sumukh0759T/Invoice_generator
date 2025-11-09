@@ -75,6 +75,22 @@ export default function Index() {
     return { subtotal, sgst, cgst, grand };
   }, [rows]);
 
+  const salesSummary = useMemo(() => {
+    const map: Record<string, { category: string; rooms: number; nights: number; subtotal: number; sgst: number; cgst: number; total: number }>
+      = {};
+    rows.forEach((r) => {
+      const key = r.category || "Uncategorized";
+      if (!map[key]) map[key] = { category: key, rooms: 0, nights: 0, subtotal: 0, sgst: 0, cgst: 0, total: 0 };
+      map[key].rooms += r.rooms || 0;
+      map[key].nights += r.nights || 0;
+      map[key].subtotal += r.subtotal;
+      map[key].sgst += r.sgst;
+      map[key].cgst += r.cgst;
+      map[key].total += r.total;
+    });
+    return Object.values(map);
+  }, [rows]);
+
   const addRow = () => {
     setRows((rs) => [
       ...rs,
@@ -114,6 +130,24 @@ export default function Index() {
     }, 50);
   };
 
+  const newInvoice = () => {
+    setInvoiceDate(todayISO);
+    setFolioNo("");
+    setGuestName("");
+    setBillTo("");
+    setCheckIn(todayISO);
+    setCheckOut(todayISO);
+    setAdults(2);
+    setDefaultRooms(1);
+    setDefaultNights(1);
+    setSource("Direct");
+    setRows([
+      computeRow({ id: uid(), category: "" as any, hsn: "", rate: 0, rooms: 1, nights: 1, subtotal: 0, sgst: 0, cgst: 0, total: 0 }),
+    ]);
+    setInvoiceNumber("");
+    setShowPreview(false);
+  };
+
   const input =
     "w-full rounded-md border bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40";
   const label = "text-xs text-muted-foreground";
@@ -132,7 +166,7 @@ export default function Index() {
               <h1 className="text-lg font-bold">{hotel.name}</h1>
             </div>
           </div>
-          <Button className="hidden md:inline-flex">New Invoice</Button>
+          <Button className="hidden md:inline-flex" onClick={newInvoice}>New Invoice</Button>
         </div>
       </header>
 
@@ -368,6 +402,38 @@ export default function Index() {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section className={card + " p-5"}>
+            <h2 className="text-sm font-semibold tracking-wide mb-4">Sales Summary</h2>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead className="bg-slate-50">
+                  <tr className="text-left">
+                    <th className="p-3 border-b">Category</th>
+                    <th className="p-3 border-b">Rooms</th>
+                    <th className="p-3 border-b">Nights</th>
+                    <th className="p-3 border-b">Subtotal</th>
+                    <th className="p-3 border-b">SGST</th>
+                    <th className="p-3 border-b">CGST</th>
+                    <th className="p-3 border-b text-right">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {salesSummary.map((s) => (
+                    <tr key={s.category} className="border-b last:border-b-0">
+                      <td className="p-3">{s.category}</td>
+                      <td className="p-3">{s.rooms}</td>
+                      <td className="p-3">{s.nights}</td>
+                      <td className="p-3">{formatINR(s.subtotal)}</td>
+                      <td className="p-3">{formatINR(s.sgst)}</td>
+                      <td className="p-3">{formatINR(s.cgst)}</td>
+                      <td className="p-3 text-right font-medium">{formatINR(s.total)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </section>
 
