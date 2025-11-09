@@ -64,7 +64,7 @@ export default function RoomRow({
     key: K,
     value: RoomRowData[K],
   ) => {
-    setRow((r) => ({ ...r, [key]: value } as RoomRowData));
+    setRow((r) => ({ ...r, [key]: value }) as RoomRowData);
   };
 
   const handleCategoryChange = (value: RoomCategory | "") => {
@@ -94,7 +94,9 @@ export default function RoomRow({
         <select
           className={inputCls}
           value={row.category}
-          onChange={(e) => handleCategoryChange(e.target.value as RoomCategory | "")}
+          onChange={(e) =>
+            handleCategoryChange(e.target.value as RoomCategory | "")
+          }
         >
           <option value="">Select category</option>
           {Object.keys(CATEGORY_RATES).map((k) => (
@@ -149,24 +151,38 @@ export default function RoomRow({
       </div>
       <div className="col-span-6 md:col-span-2">
         <label className={labelCls}>Subtotal</label>
-        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">{formatINR(row.subtotal)}</div>
+        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">
+          {formatINR(row.subtotal)}
+        </div>
       </div>
 
       <div className="col-span-6 md:col-span-2">
         <label className={labelCls}>SGST (2.5%)</label>
-        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">{formatINR(row.sgst)}</div>
+        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">
+          {formatINR(row.sgst)}
+        </div>
       </div>
       <div className="col-span-6 md:col-span-2">
         <label className={labelCls}>CGST (2.5%)</label>
-        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">{formatINR(row.cgst)}</div>
+        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm">
+          {formatINR(row.cgst)}
+        </div>
       </div>
       <div className="col-span-6 md:col-span-2">
         <label className={labelCls}>Total</label>
-        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm font-medium">{formatINR(row.total)}</div>
+        <div className="h-10 flex items-center rounded-md border bg-slate-50 px-3 text-sm font-medium">
+          {formatINR(row.total)}
+        </div>
       </div>
 
       <div className="col-span-12 md:col-span-1 flex md:justify-end">
-        <Button variant="secondary" className="text-red-600 border border-red-200 bg-red-50 hover:bg-red-100" type="button" onClick={onRemove} aria-label="Remove room row">
+        <Button
+          variant="secondary"
+          className="text-red-600 border border-red-200 bg-red-50 hover:bg-red-100"
+          type="button"
+          onClick={onRemove}
+          aria-label="Remove room row"
+        >
           <X className="w-4 h-4" />
           <span className="hidden md:inline">Remove</span>
         </Button>

@@ -76,11 +76,30 @@ export default function Index() {
   }, [rows]);
 
   const salesSummary = useMemo(() => {
-    const map: Record<string, { category: string; rooms: number; nights: number; subtotal: number; sgst: number; cgst: number; total: number }>
-      = {};
+    const map: Record<
+      string,
+      {
+        category: string;
+        rooms: number;
+        nights: number;
+        subtotal: number;
+        sgst: number;
+        cgst: number;
+        total: number;
+      }
+    > = {};
     rows.forEach((r) => {
       const key = r.category || "Uncategorized";
-      if (!map[key]) map[key] = { category: key, rooms: 0, nights: 0, subtotal: 0, sgst: 0, cgst: 0, total: 0 };
+      if (!map[key])
+        map[key] = {
+          category: key,
+          rooms: 0,
+          nights: 0,
+          subtotal: 0,
+          sgst: 0,
+          cgst: 0,
+          total: 0,
+        };
       map[key].rooms += r.rooms || 0;
       map[key].nights += r.nights || 0;
       map[key].subtotal += r.subtotal;
@@ -95,17 +114,17 @@ export default function Index() {
     setRows((rs) => [
       ...rs,
       computeRow({
-      id: uid(),
-      category: "" as any,
-      hsn: "",
-      rate: 0,
-      rooms: defaultRooms,
-      nights: defaultNights,
-      subtotal: 0,
-      sgst: 0,
-      cgst: 0,
-      total: 0,
-    }),
+        id: uid(),
+        category: "" as any,
+        hsn: "",
+        rate: 0,
+        rooms: defaultRooms,
+        nights: defaultNights,
+        subtotal: 0,
+        sgst: 0,
+        cgst: 0,
+        total: 0,
+      }),
     ]);
   };
 
@@ -142,7 +161,18 @@ export default function Index() {
     setDefaultNights(1);
     setSource("Direct");
     setRows([
-      computeRow({ id: uid(), category: "" as any, hsn: "", rate: 0, rooms: 1, nights: 1, subtotal: 0, sgst: 0, cgst: 0, total: 0 }),
+      computeRow({
+        id: uid(),
+        category: "" as any,
+        hsn: "",
+        rate: 0,
+        rooms: 1,
+        nights: 1,
+        subtotal: 0,
+        sgst: 0,
+        cgst: 0,
+        total: 0,
+      }),
     ]);
     setInvoiceNumber("");
     setShowPreview(false);
@@ -166,7 +196,9 @@ export default function Index() {
               <h1 className="text-lg font-bold">{hotel.name}</h1>
             </div>
           </div>
-          <Button className="hidden md:inline-flex" onClick={newInvoice}>New Invoice</Button>
+          <Button className="hidden md:inline-flex" onClick={newInvoice}>
+            New Invoice
+          </Button>
         </div>
       </header>
 
@@ -406,7 +438,9 @@ export default function Index() {
           </section>
 
           <section className={card + " p-5"}>
-            <h2 className="text-sm font-semibold tracking-wide mb-4">Sales Summary</h2>
+            <h2 className="text-sm font-semibold tracking-wide mb-4">
+              Sales Summary
+            </h2>
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm">
                 <thead className="bg-slate-50">
@@ -429,7 +463,9 @@ export default function Index() {
                       <td className="p-3">{formatINR(s.subtotal)}</td>
                       <td className="p-3">{formatINR(s.sgst)}</td>
                       <td className="p-3">{formatINR(s.cgst)}</td>
-                      <td className="p-3 text-right font-medium">{formatINR(s.total)}</td>
+                      <td className="p-3 text-right font-medium">
+                        {formatINR(s.total)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

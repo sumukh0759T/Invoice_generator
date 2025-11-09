@@ -121,19 +121,40 @@
   }
 
   @media print {
-    @page { size: A4 portrait; margin: 10mm; }
-    body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page {
+      size: A4 portrait;
+      margin: 10mm;
+    }
+    body {
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
 
     /* Keep the invoice together on a single page when possible */
-    #invoice { break-inside: avoid; page-break-inside: avoid; page-break-after: avoid; -webkit-print-color-adjust: exact; width: 100%; }
+    #invoice {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+      -webkit-print-color-adjust: exact;
+      width: 100%;
+    }
     /* Slightly reduce scale to help fit large invoices to one page */
     /* Many browsers ignore zoom; this helps in some printers */
-    #invoice { transform-origin: top left; zoom: 0.95; }
+    #invoice {
+      transform-origin: top left;
+      zoom: 0.95;
+    }
 
     /* Make the container full width for printing */
-    .container { max-width: 100% !important; }
+    .container {
+      max-width: 100% !important;
+    }
 
     /* Remove extra shadows and backgrounds that may cause breaks */
-    .shadow-sm, .shadow { box-shadow: none !important; }
+    .shadow-sm,
+    .shadow {
+      box-shadow: none !important;
+    }
   }
 }
