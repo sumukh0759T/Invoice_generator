@@ -42,10 +42,12 @@ export default function RoomRow({
   data,
   onChange,
   onRemove,
+  rates,
 }: {
   data: RoomRowData;
   onChange: (updated: RoomRowData) => void;
   onRemove: () => void;
+  rates?: Record<RoomCategory, number>;
 }) {
   const [row, setRow] = useState<RoomRowData>(() => computeRow(data));
   const prevCategory = useRef(row.category);
