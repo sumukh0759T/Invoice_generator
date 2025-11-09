@@ -10,9 +10,9 @@ export type RoomCategory =
   | "Dormitory";
 
 export const CATEGORY_RATES: Record<RoomCategory, number> = {
-  "Deluxe Room": 2500,
-  "Executive Room": 3500,
-  Suite: 5000,
+  "Deluxe room": 2500,
+  "Standard room": 2000,
+  "Family room": 4500,
   Dormitory: 1200,
 };
 
