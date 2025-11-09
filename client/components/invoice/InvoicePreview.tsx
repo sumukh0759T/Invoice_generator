@@ -46,23 +46,14 @@ export default function InvoicePreview({
   const grand = subtotal + sgst + cgst;
 
   return (
-    <div
-      id="invoice"
-      className="bg-white border rounded-xl shadow-sm overflow-hidden print:shadow-none"
-    >
+    <div id="invoice" className="bg-white border rounded-xl shadow-sm overflow-hidden print:shadow-none">
       <div className="border-b p-6 bg-primary/5">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-primary">{hotel.name}</h1>
-            <p className="text-sm text-muted-foreground max-w-xl">
-              {hotel.address}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              GSTIN: {hotel.gstin}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Phone: {hotel.phone} • Email: {hotel.email}
-            </p>
+            <p className="text-sm text-muted-foreground max-w-xl">{hotel.address}</p>
+            <p className="text-sm text-muted-foreground">GSTIN: {hotel.gstin}</p>
+            <p className="text-sm text-muted-foreground">Phone: {hotel.phone} • Email: {hotel.email}</p>
           </div>
           <div className="text-right">
             <p className="text-xs text-muted-foreground">Invoice No.</p>
@@ -75,9 +66,7 @@ export default function InvoicePreview({
 
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-1">
-          <h2 className="text-sm font-semibold tracking-wide text-foreground">
-            Bill To
-          </h2>
+          <h2 className="text-sm font-semibold tracking-wide text-foreground">Bill To</h2>
           <p className="text-sm whitespace-pre-line">{billTo || guestName}</p>
         </div>
         <div className="grid grid-cols-2 gap-4 text-sm">
@@ -103,9 +92,7 @@ export default function InvoicePreview({
           </div>
           <div>
             <p className="text-muted-foreground">Rooms × Nights</p>
-            <p className="font-medium">
-              {rooms} × {nights}
-            </p>
+            <p className="font-medium">{rooms} × {nights}</p>
           </div>
           <div>
             <p className="text-muted-foreground">Source</p>
@@ -120,6 +107,7 @@ export default function InvoicePreview({
             <thead className="bg-slate-50">
               <tr className="text-left">
                 <th className="p-3 border-b">Room Category</th>
+                <th className="p-3 border-b">HSN</th>
                 <th className="p-3 border-b">Rate</th>
                 <th className="p-3 border-b">Rooms</th>
                 <th className="p-3 border-b">Nights</th>
@@ -133,15 +121,14 @@ export default function InvoicePreview({
               {items.map((it) => (
                 <tr key={it.id} className="border-b last:border-b-0">
                   <td className="p-3">{it.category}</td>
+                  <td className="p-3">{it.hsn || "-"}</td>
                   <td className="p-3">{formatINR(it.rate)}</td>
                   <td className="p-3">{it.rooms}</td>
                   <td className="p-3">{it.nights}</td>
                   <td className="p-3">{formatINR(it.subtotal)}</td>
                   <td className="p-3">{formatINR(it.sgst)}</td>
                   <td className="p-3">{formatINR(it.cgst)}</td>
-                  <td className="p-3 text-right font-medium">
-                    {formatINR(it.total)}
-                  </td>
+                  <td className="p-3 text-right font-medium">{formatINR(it.total)}</td>
                 </tr>
               ))}
             </tbody>
@@ -170,19 +157,14 @@ export default function InvoicePreview({
             </div>
             <div className="flex items-center justify-between p-3 bg-primary/5">
               <span className="text-sm font-semibold">Grand Total</span>
-              <span className="text-base font-bold text-primary">
-                {formatINR(grand)}
-              </span>
+              <span className="text-base font-bold text-primary">{formatINR(grand)}</span>
             </div>
           </div>
         </div>
       </div>
 
       <div className="p-6 flex items-center justify-end gap-3 print:hidden">
-        <Button
-          className="bg-primary hover:bg-primary/90 text-primary-foreground"
-          onClick={() => window.print()}
-        >
+        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.print()}>
           <Printer className="w-4 h-4" />
           Print / Save PDF
         </Button>
@@ -194,9 +176,5 @@ export default function InvoicePreview({
 function formatDate(s: string) {
   if (!s) return "";
   const d = new Date(s);
-  return d.toLocaleDateString("en-IN", {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  });
+  return d.toLocaleDateString("en-IN", { year: "numeric", month: "short", day: "2-digit" });
 }
