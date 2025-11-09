@@ -54,12 +54,20 @@ export default function Index() {
   ]);
 
   // Editable category rates (user-entered prices)
-  const [categoryRates, setCategoryRates] = useState<Record<RoomCategory, number>>(() => ({ ...CATEGORY_RATES }));
+  const [categoryRates, setCategoryRates] = useState<
+    Record<RoomCategory, number>
+  >(() => ({ ...CATEGORY_RATES }));
 
   const setCategoryRate = (cat: RoomCategory, value: number) => {
     setCategoryRates((s) => ({ ...s, [cat]: value }));
     // Update existing non-dirty rows that match this category
-    setRows((rs) => rs.map((r) => (r.category === cat && !r.dirtyRate ? computeRow({ ...r, rate: value }) : r)));
+    setRows((rs) =>
+      rs.map((r) =>
+        r.category === cat && !r.dirtyRate
+          ? computeRow({ ...r, rate: value })
+          : r,
+      ),
+    );
   };
 
   useEffect(() => {
@@ -419,21 +427,26 @@ export default function Index() {
             {/* Real-time totals */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
               <div className="md:col-span-2 text-sm text-muted-foreground">
-              <div className="mb-2">Category pricing (enter your rates):</div>
-              <div className="grid grid-cols-1 gap-2">
-                {Object.keys(categoryRates).map((k) => (
-                  <div key={k} className="flex items-center gap-2">
-                    <label className="text-xs w-36">{k}</label>
-                    <input
-                      type="number"
-                      className="w-full rounded-md border px-2 py-1 text-sm"
-                      value={categoryRates[k as RoomCategory]}
-                      onChange={(e) => setCategoryRate(k as RoomCategory, Number(e.target.value || 0))}
-                    />
-                  </div>
-                ))}
+                <div className="mb-2">Category pricing (enter your rates):</div>
+                <div className="grid grid-cols-1 gap-2">
+                  {Object.keys(categoryRates).map((k) => (
+                    <div key={k} className="flex items-center gap-2">
+                      <label className="text-xs w-36">{k}</label>
+                      <input
+                        type="number"
+                        className="w-full rounded-md border px-2 py-1 text-sm"
+                        value={categoryRates[k as RoomCategory]}
+                        onChange={(e) =>
+                          setCategoryRate(
+                            k as RoomCategory,
+                            Number(e.target.value || 0),
+                          )
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
               <div className="md:col-span-1">
                 <div className="border rounded-md overflow-hidden">
                   <div className="flex items-center justify-between p-2 border-b bg-slate-50">
