@@ -228,6 +228,16 @@ export default function Index() {
                   }
                 />
               </div>
+               <div>
+                <label className={label}>HSN CODE</label>
+                <input
+                  className={input}
+                  value={hotel.hsn}
+                  onChange={(e) =>
+                    setHotel({ ...hotel, hsn: e.target.value })
+                  }
+                />
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className={label}>Phone</label>
@@ -503,8 +513,7 @@ export default function Index() {
       </main>
 
       <footer className="py-8 text-center text-xs text-muted-foreground">
-        Built with love for hospitality • Accent color #f77f00 • Responsive &
-        printable
+        This is computer generated bill, Signature is not required
       </footer>
     </div>
   );
