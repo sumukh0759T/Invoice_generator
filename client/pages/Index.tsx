@@ -17,11 +17,11 @@ function uid() {
 export default function Index() {
   // Hotel details (editable)
   const [hotel, setHotel] = useState<HotelInfo>({
-    name: "Aurora Grand Hotel",
-    address: "12, Beachside Road, Bengaluru 560001, Karnataka, India",
-    gstin: "29ABCDE1234F2Z5",
-    phone: "+91 98765 43210",
-    email: "billing@auroragrand.in",
+    name: "Lucent The Luxury Hotel",
+    address: "Ratnagiri Extension, Kempanahalli Main Road, Chikkmagaluru",
+    gstin: "29BPIPK0091R1Z7",
+    phone: "+918618376684",
+    email: "lucentthehomelystay@gmail.com",
   });
 
   // Guest and invoice fields
