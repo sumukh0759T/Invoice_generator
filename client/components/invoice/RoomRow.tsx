@@ -13,7 +13,7 @@ export const CATEGORY_RATES: Record<RoomCategory, number> = {
   "Deluxe room": 2500,
   "Standard room": 2000,
   "Family room": 4500,
-  "Dormitory": 1200,
+  Dormitory: 1200,
 };
 
 export interface RoomRowData {

@@ -228,14 +228,12 @@ export default function Index() {
                   }
                 />
               </div>
-               <div>
+              <div>
                 <label className={label}>HSN CODE</label>
                 <input
                   className={input}
                   value={hotel.hsn}
-                  onChange={(e) =>
-                    setHotel({ ...hotel, hsn: e.target.value })
-                  }
+                  onChange={(e) => setHotel({ ...hotel, hsn: e.target.value })}
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
