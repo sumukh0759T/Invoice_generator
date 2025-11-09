@@ -42,6 +42,7 @@ export default function Index() {
     computeRow({
       id: uid(),
       category: "" as any,
+      hsn: "",
       rate: 0,
       rooms: defaultRooms,
       nights: defaultNights,
@@ -78,16 +79,17 @@ export default function Index() {
     setRows((rs) => [
       ...rs,
       computeRow({
-        id: uid(),
-        category: "" as any,
-        rate: 0,
-        rooms: defaultRooms,
-        nights: defaultNights,
-        subtotal: 0,
-        sgst: 0,
-        cgst: 0,
-        total: 0,
-      }),
+      id: uid(),
+      category: "" as any,
+      hsn: "",
+      rate: 0,
+      rooms: defaultRooms,
+      nights: defaultNights,
+      subtotal: 0,
+      sgst: 0,
+      cgst: 0,
+      total: 0,
+    }),
     ]);
   };
 
