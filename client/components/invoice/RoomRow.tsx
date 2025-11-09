@@ -4,9 +4,9 @@ import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export type RoomCategory =
-  | "Deluxe Room"
-  | "Executive Room"
-  | "Suite"
+  | "Deluxe room"
+  | "Standard room"
+  | "Family room"
   | "Dormitory";
 
 export const CATEGORY_RATES: Record<RoomCategory, number> = {
