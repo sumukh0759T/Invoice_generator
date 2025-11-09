@@ -75,7 +75,7 @@ export default function RoomRow({
     setRow((r) => {
       let newRate = r.rate;
       if (value && (!r.dirtyRate || isChange)) {
-        newRate = CATEGORY_RATES[value];
+        newRate = (rates && rates[value]) ?? CATEGORY_RATES[value];
       }
       return computeRow({ ...r, category: value, rate: newRate });
     });
